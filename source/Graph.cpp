@@ -37,7 +37,7 @@ double Graph::approxDistance(const int& x1, const int& y1, const int& x2, const 
 	return this->getValueOfNode(x2,y2)*sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
 
-std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, const int &x2, const int &y2)
+std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, const int &x2, const int &y2) const
 {
 	struct node
 	{
@@ -53,12 +53,9 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 	std::vector<node> open{};
 	std::vector<node> close{};
 	open.emplace_back(x1, y1);
-	int smallestF = 0;
-	int smallestFID = 0;
-	int index = 0;
+	int smallestF, smallestFID, index;
 	node tempQ(0,0);
-	bool isInClose = false;
-	bool isInOpen = false;
+	bool isInClose, isInOpen;
 	node temp(0, 0),temp2(0,0);
 
 	auto isInVector = [](const std::vector<node> &v, int x, int y)
@@ -156,7 +153,7 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 	return result;
 }
 
-std::vector<std::pair<int, int>> Graph::getNeighbors(const int& x, const int& y)
+std::vector<std::pair<int, int>> Graph::getNeighbors(const int& x, const int& y) const
 {
 	std::vector<std::pair<int, int>> nodes;
 	if (this->getValueOfNode(x - 1, y))

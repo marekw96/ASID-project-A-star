@@ -25,8 +25,8 @@ public:
 	int getXsize() const;
 	int getYsize() const;
 	double approxDistance(const int &x1, const int &y1, const int &x2, const int &y2) const;
-	std::vector<std::pair<int, int>> getPatch(const int &x1, const int &y1, const int &x2, const int &y2);
-	std::vector<std::pair<int,int>> getNeighbors(const int &x, const int &y);
+	std::vector<std::pair<int, int>> getPatch(const int &x1, const int &y1, const int &x2, const int &y2) const;
+	std::vector<std::pair<int,int>> getNeighbors(const int &x, const int &y) const;
 };
 
 #endif // !GRAPH_CLASS
