@@ -94,6 +94,7 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 					{
 						result.emplace_back(p.x, p.y);
 						tempQ = p;
+						break;
 					}
 				}
 			}
@@ -117,6 +118,7 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 				{
 					if (inOpen.x == p.first && inOpen.y == p.second)
 						isInOpen = true;
+					break;
 				}
 				//calc new values
 				temp.x = p.first;
@@ -137,7 +139,10 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 					for (const auto &inOpen : open)
 					{
 						if (inOpen.x == p.first && inOpen.y == p.second)
+						{
 							smallestFID = index;
+							break;
+						}
 						index++;
 					}
 					if(temp.G < open[smallestFID].G)
