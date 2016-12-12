@@ -146,10 +146,7 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 					}
 					if(temp.G < open[smallestFID].G)
 					{
-						open[smallestFID].parent.first = tempQ.x;
-						open[smallestFID].parent.second = tempQ.y;
-						open[smallestFID].G = temp.G;
-						open[smallestFID].F = temp.F;
+						open[smallestFID] = temp;
 					}
 				}
 			}
