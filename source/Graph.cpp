@@ -50,18 +50,18 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 		node::node(int x, int y) : x(x), y(y), G(0), H(0), F(0), parent(0,0) {};
 	};
 
-	std::vector<node> open;
-	std::vector<node> close;
+	std::vector<node> open{};
+	std::vector<node> close{};
 	open.emplace_back(x1, y1);
 	int smallestF = 0;
 	int smallestFID = 0;
 	int index = 0;
 	node tempQ(0,0);
-	bool isInClose;
-	bool isInOpen;
+	bool isInClose = false;
+	bool isInOpen = false;
 	node temp(0, 0),temp2(0,0);
 
-	std::vector<std::pair<int,int>> result;
+	std::vector<std::pair<int,int>> result{};
 
 	while(!open.empty())
 	{
