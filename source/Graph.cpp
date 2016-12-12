@@ -117,15 +117,17 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 				for(const auto &inOpen : open)
 				{
 					if (inOpen.x == p.first && inOpen.y == p.second)
+					{
 						isInOpen = true;
-					break;
+						break;
+					}
 				}
 				//calc new values
 				temp.x = p.first;
 				temp.y = p.second;
 				temp.parent.first = tempQ.x;
 				temp.parent.second = tempQ.y;
-				temp.G = this->approxDistance(temp.x, temp.y, tempQ.x, tempQ.y);
+				temp.G = tempQ.G + this->approxDistance(temp.x, temp.y, tempQ.x, tempQ.y);
 				temp.H = this->approxDistance(temp.x, temp.y, x2, y2);
 				temp.F = temp.G + temp.H;
 
