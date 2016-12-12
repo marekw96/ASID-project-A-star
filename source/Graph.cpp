@@ -34,7 +34,7 @@ int Graph::getYsize() const
 
 double Graph::approxDistance(const int& x1, const int& y1, const int& x2, const int& y2) const
 {
-	return 1.*sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+	return this->getValueOfNode(x2,y2)*sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
 
 std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, const int &x2, const int &y2)
@@ -60,6 +60,16 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 	bool isInClose = false;
 	bool isInOpen = false;
 	node temp(0, 0),temp2(0,0);
+
+	auto isInVector = [](const std::vector<node> &v, int x, int y)
+	{
+		for (const auto &in: v)
+		{
+			if (in.x == x && in.y == y)
+				return true;
+		}
+		return false;
+	};
 
 	std::vector<std::pair<int,int>> result{};
 
@@ -105,23 +115,10 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 		for(const auto &p : this->getNeighbors(tempQ.x, tempQ.y))
 		{
 			//is on close list
-			isInClose = false;
-			for(const auto &inClose : close)
-			{
-				if (inClose.x == p.first && inClose.y == p.second)
-					isInClose = true;
-			}
+			isInClose = isInVector(close, p.first, p.second);
 			if(!isInClose)
 			{
-				isInOpen = false;
-				for(const auto &inOpen : open)
-				{
-					if (inOpen.x == p.first && inOpen.y == p.second)
-					{
-						isInOpen = true;
-						break;
-					}
-				}
+				isInOpen = isInVector(open, p.first, p.second);
 				//calc new values
 				temp.x = p.first;
 				temp.y = p.second;
