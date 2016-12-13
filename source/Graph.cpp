@@ -58,7 +58,7 @@ std::vector<std::pair<int, int>> Graph::getPatch(const int &x1, const int &y1, c
 	bool isInClose, isInOpen;
 	node temp(0, 0),temp2(0,0);
 
-	auto isInVector = [](const std::vector<node> &v, int x, int y)
+	auto isInVector = [](const std::vector<node> &v, int x, int y)->bool
 	{
 		for (const auto &in: v)
 		{
@@ -164,6 +164,14 @@ std::vector<std::pair<int, int>> Graph::getNeighbors(const int& x, const int& y)
 		nodes.emplace_back(x, y-1);
 	if (this->getValueOfNode(x, y + 1))
 		nodes.emplace_back(x, y + 1);
+	if (this->getValueOfNode(x - 1, y - 1))
+		nodes.emplace_back(x - 1, y - 1);
+	if (this->getValueOfNode(x + 1 , y + 1))
+		nodes.emplace_back(x + 1, y + 1);
+	if (this->getValueOfNode(x - 1, y + 1))
+		nodes.emplace_back(x - 1, y + 1);
+	if (this->getValueOfNode(x + 1, y - 1))
+		nodes.emplace_back(x + 1, y - 1);
 
 	return nodes;
 }
