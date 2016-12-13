@@ -42,12 +42,21 @@ int main()
 	auto patch = graph.getPatch(x1, y1, x2, y2);
 	if (patch.size())
 	{
-		cout << "Znalezione droga prowadzi przez:" << endl; 
-		for (const auto &p : patch) 
+		cout << "Rozmiar drogi :" << patch.size();
+		int write;
+		cout << endl << "Wypisac? (1/0) ";
+		cin >> write;
+		if(write == 1)
+		{
+			cout << "Znalezione droga prowadzi przez:" << endl;
+			for (const auto &p : patch)
 			std::cout << p.first << " " << p.second << std::endl;
+		}
 	}
 	else
 		cout << "Brak drogi";
+
+
 
 	cin.ignore();
 	cin.get();
